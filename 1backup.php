@@ -1,4 +1,3 @@
-
 <?php  
   if(!empty($_GET['idprod'])){$imprimir = false;
 											 
@@ -33,8 +32,7 @@
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item text-center">
 										
-										
-                               <?php $catJason = file_get_contents("detalle_producto.json");
+										<?php $catJason = file_get_contents("detalle_producto.json");
                                     $detalle_producto = json_decode($catJason, true);
 
 		                              foreach($detalle_producto as $det){
@@ -43,40 +41,47 @@
 										
 										if(!empty($_GET['idprod'])){
 											
-											
-
+										
+											echo "<h1> idprod   " .$_GET['idprod']."</h1>";
+											echo "<h1> id   " .$det['id']."</h1>";
                                                
 										
-											if($det['id'] == $_GET['idprod']){ ?>
-												
-												<img src="images/<?php echo $det['imagen']?>" alt="">
-												</div>
-											<div class="item-info-product text-center border-top mt-4">
-												<h4 class="pt-1">
-	
-	
-										<a href="single.php">
-										 
-										<?php echo $det['nombre']?></a></h4>
-										<div class="info-product-price my-2">
-													<span class="item_price"><?php echo $det['precio']?></span>
-													</div>
-												<div class="info-product-price my-2">
-													<span><?php echo $det['detalle']?></span>
-												</div>
-												<?php 
+											if($det['id'] == $_GET['idprod']){
+												echo 
 
 												
 													
-												}
+												
+											
+											
+										
+										
+											
+											}
 										
 										}
 									
 									
 								
-                                   ?> 
-								       <?php }  ?>
-									   <br>
+                                   ?>   
+											<img src="images/<?php echo $det['imagen']?>" alt="">
+											</div>
+										<div class="item-info-product text-center border-top mt-4">
+											<h4 class="pt-1">
+
+
+                                    <a href="single.php">
+									 
+									<?php echo $det['nombre']?></a></h4>
+		                            <div class="info-product-price my-2">
+												<span class="item_price"><?php echo $det['precio']?></span>
+												</div>
+                                            <div class="info-product-price my-2">
+												<span><?php echo $det['detalle']?>
+</span>
+                                            </div>
+											                                        
+                                            <br>
                                             
                                             
                                             <span class="item_price">Opinion del producto</span>
@@ -103,7 +108,7 @@
 													</fieldset>
 												</form>
 											</div>		                        
-                             
+                              <?php }  ?>
 
                                             
                                           

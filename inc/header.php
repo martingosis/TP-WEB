@@ -56,7 +56,7 @@
 					<h1 class="text-center">
 						<a href="index.php" class="font-weight-bold font-italic">
 							<img src="images/logo2.png" alt=" " class="img-fluid">Electro Store
-						</a>
+                        </a>
 					</h1>
 				</div>
 				<!-- //logo -->

@@ -27,14 +27,14 @@
       
 "5":{"id":"5",
     "nombre":"Samsung Galaxy A3",
-    "imagen":"m3.jpg",
+    "imagen":"mk3.jpg",
     "precio":"$150.00",
     "detalle":"Pantalla: 4.5, 720 x 1280 pixels Procesador: Snapdragon 410 1.4GHz RAM: 3GB Almacenamiento: 16GB Expansión: microSD Cámara: 10 MP"},
 
  
 "6":{"id":"6",
     "nombre":"Samsung Galaxy A3 2019",
-    "imagen":"m3.jpg",
+    "imagen":"mk3.jpg",
     "precio":"$250.00",
     "detalle":"Pantalla: 4.5, 720 x 1280 pixelsProcesador: Snapdragon 410 1.4GHz RAM: 4GB Almacenamiento: 16GB Expansión: microSD Cámara: 13 MP"},
 
@@ -132,7 +132,7 @@
  
 "20":{"id":"20",
     "nombre":"Heladera LG No Frost",
-    "imagen":"m12.jpg",
+    "imagen":"2.jpg",
     "precio":"$450.00",
     "detalle":"Heladera Noblex 280L 220V Eficiencia energetica A++ "}
 
