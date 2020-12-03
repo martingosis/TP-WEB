@@ -1,5 +1,15 @@
- <?php      
+ <?php 
+
 	session_start();
+
+        if(isset($_GET['logout'])){
+            
+            unset($_SESSION['user']);
+            
+        }
+
+    if(!$_SESSION['user']){
+          header("location:login.php");}
 
 ?>
 
@@ -94,7 +104,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
 						<li class="<?php echo($seccion=="Logout")?"nav-item active mr-lg-2 mb-lg-0 mb-2":""?>">
-							<a class="nav-link" href="../index.php">Logout</a>
+							<a class="nav-link" href="system.php?logout">Logout</a>
 						</li>
 					</ul>
 				</div>

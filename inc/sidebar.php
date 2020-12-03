@@ -9,18 +9,23 @@
 						
 							<h3 class="agileits-sear-head mb-3">Productos</h3>
 							<div class="left-side py-2">
-							
+		
+                            <ul>
+                            					
+                            															
 							    <?php $catJason = file_get_contents("./categorias.json");
                                     $categorias = json_decode($catJason, true);
                                     
+                                
 		                              foreach($categorias as $cat){
                                 
                                 ?>   
-                                    <ul><a href="./product.php?cat=<?php echo $cat['id']?>"><span class="icon-chevron-right"></span> <?php echo $cat['nombre']?></a></ul>
+                                    <li><a href="./product.php?cat=<?php echo $cat['id']?>&mar=<?php echo isset($_GET['mar'])?$_GET["mar"]:""?>"><span class="icon-chevron-right"></span> <?php echo $cat['nombre']?></a></li>
 		                        
 		                        
                               <?php }  ?>
-                                  
+                                
+                                </ul>  
 								
 							</div>
 						</div>

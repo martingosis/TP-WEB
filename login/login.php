@@ -1,12 +1,14 @@
 <?php
 
+session_start();
+
   if(isset($_POST['submit'])){
     $username=$_POST['username'];
     $password=$_POST['pass'];
 
-     
+       
       if($username=='admin' && $password=='admin'){
-          
+          $_SESSION['user']= true;
           header("location:system.php");
           
       }else{
@@ -21,7 +23,10 @@
           
     }
    
-        
+       
+        if(isset($_SESSION['user'])){
+          header("location:system.php");}
+
     
 ?>
    
