@@ -1,3 +1,51 @@
+<?php
+
+    $msg = '';
+    
+    if(isset($_POST['submit'])){
+        
+        require_once 'swift-mailer/vendor/autoload.php';
+        require_once 'swift-mailer/info.php';
+            
+    // Create the Transport
+   $transport = (new Swift_SmtpTransport('smtp.mail.yahoo.com', 25))
+  ->setUsername('EMAIL')
+  ->setPassword('PASS')
+    ;
+
+    // Create the Mailer using your created Transport
+   $mailer = new Swift_Mailer($transport);
+
+    // Create a message
+   $message = (new Swift_Message('Form Submission'))
+  ->setFrom([EMAIL => 'martin'])
+  ->setTo($_POST['email'])
+  ->setBody($_POST['message']);
+
+    // Send the message
+   $result = $mailer->send($message);
+        
+        if(!$result){
+            
+            $msg = '<div class=alert alert-danger text-center >
+                something went wrong
+                </div>';
+                
+            }else{
+            
+            
+            $msg = '<div class=alert alert-seccess text-center >
+                Messege Sent Successfully
+                </div>';
+            
+            }
+                
+    
+}
+    
+
+?>
+
 <?php  
    $seccion="Contactenos";
 	include("inc/header.php");
@@ -10,19 +58,7 @@
 	</div>
 	<!-- //banner-2 -->
 	<!-- page -->
-	<div class="services-breadcrumb">
-		<div class="agile_inner_breadcrumb">
-			<div class="container">
-				<ul class="w3_short">
-					<li>
-						<a href="index.php">Home</a>
-						<i>|</i>
-					</li>
-					<li>Contact Us</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	
 	<!-- //page -->
 
 	<!-- contact -->
@@ -34,48 +70,12 @@
 				<span>U</span>s
 			</h3>
 			<!-- //tittle heading -->
-			<div class="row contact-grids agile-1 mb-5">
-				<div class="col-sm-4 contact-grid agileinfo-6 mt-sm-0 mt-2">
-					<div class="contact-grid1 text-center">
-						<div class="con-ic">
-							<i class="fas fa-map-marker-alt rounded-circle"></i>
-						</div>
-						<h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Address</h4>
-						<p>1PO Box 8568954 Melbourne
-							<label>Australia.</label>
-						</p>
-					</div>
-				</div>
-				<div class="col-sm-4 contact-grid agileinfo-6 my-sm-0 my-4">
-					<div class="contact-grid1 text-center">
-						<div class="con-ic">
-							<i class="fas fa-phone rounded-circle"></i>
-						</div>
-						<h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Call Us</h4>
-						<p>+(0121) 121 121
-							<label>+(0121) 121 122</label>
-						</p>
-					</div>
-				</div>
-				<div class="col-sm-4 contact-grid agileinfo-6">
-					<div class="contact-grid1 text-center">
-						<div class="con-ic">
-							<i class="fas fa-envelope-open rounded-circle"></i>
-						</div>
-						<h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Email</h4>
-						<p>
-							<a href="mailto:info@example.com">info@example1.com</a>
-							<label>
-								<a href="mailto:info@example.com">info@example2.com</a>
-							</label>
-						</p>
-					</div>
-				</div>
-			</div>
+			
 			<!-- form -->
-			<form action="send.php" method="post">
+			<form action="" method="post">
 				<div class="contact-grids1 w3agile-6">
 					<div class="row">
+					  <div><?= $msg; ?></div>
 						<div class="col-md-6 col-sm-6 contact-form1 form-group">
 							<label class="col-form-label">Name</label>
 							<input type="text" class="form-control" name="name" placeholder="" required="">
@@ -85,24 +85,20 @@
 							<input type="email" class="form-control" name="email" placeholder="" required="">
 						</div>
 						<div class="col-md-6 col-sm-6 contact-form1 form-group">
-							<label class="col-form-label">Telefono</label>
-							<input  class="form-control" name="telefono" placeholder="" required="number">
-						</div>
-						<div class="col-md-6 col-sm-6 contact-form1 form-group">
-							<label class="col-form-label">Area</label>
-							<input type="text" class="form-control" name="area" placeholder="" required="">
+							<label class="col-form-label">Phone</label>
+							<input  class="form-control" name="phone" placeholder="" required="number">
 						</div>
 					</div>
 					<div class="contact-me animated wow slideInUp form-group">
 						<label class="col-form-label">Message</label>
-						<textarea name="message" class="form-control" placeholder="" required=""> </textarea>
+						<textarea name="message" class="form-control" placeholder="Escriba su mensaje..." required=""> </textarea>
 					</div>
-					<div class="contact-form">
-						<input type="submit" value="Submit">
+					<div>
+						<input type="submit" name="submit" value="send">
 					</div>
 				</div>
 			</form>
-			<!-- //form -->
+
 		</div>
 	</div>
 	
