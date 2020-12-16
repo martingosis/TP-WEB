@@ -15,6 +15,7 @@
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -120,75 +121,59 @@
 	
 
 
-	<?php
-        include_once('func.php');
+<?php
 
-        if(isset($_GET['del'])){
-            //obtengo el contenido del archivo
-            $datos = file_get_contents('./comentarios.json');
-            //convierto a un array
-            $datosJson = json_decode($datos,true);
-            //var_dump($datosJson);
-            //borro del array
-            unset($datosJson[$_GET['del']]);
-            //trunco el archivo
-            $fp = fopen('./comentarios.json','w');
-            //convierto a json string
-            $datosString = json_encode($datosJson);
-            //guardo el archivo
-            fwrite($fp,$datosString);
-            fclose($fp);
-            redirect('comentarios.php');
-        }
-        ?>
-        
-        
-        <div class="container">
-        <div class="row">
-        <div class="col-4">
 
-                       
-            <ul>
-                <li><a href="system.php">Categorias</a></li>
-                <li><a href="system2.php">Marca</a></li>
-                <li><a href="producto.php">Productos</a></li>
-                <li><a href="comentarios.php">Comentarios</a></li>      
-            </ul>    
-        </div>
-        
-        <div class="col-8">
+    include_once('func.php');
+                            
+                            
+    $datos = file_get_contents('../detalle_producto.json');
+    $datosJson = json_decode($datos,true);
             
-        
+                if(isset($_POST['add'])){
+                
+                    if(isset($_GET['edit'])){
+                        //modificando
+                        $id= $_GET['edit'];
+                        
+                    }else{
+                        //agrego
+                        $id = date('ymdhis');
+                        
+                    }
+                
+                
+				$datosJson[$id] = array('id'=>$id, 'nombre'=>$_POST['nombre'], 'imagen'=>$_POST['imagen']
+				, 'precio'=>$_POST['precio'], 'detalle'=>$_POST['detalle']);    
+                
+                //trunco el archivo
+                
+                $fp = fopen('../detalle_producto.json', 'w');
+                //convierto a json string
+                $datosString = json_encode($datosJson);
+                //guardo el archivo
+                fwrite($fp,$datosString);
+                fclose($fp);
+                redirect('producto.php');
+            }
 
-        <h2>Comentarios </h2>
 
-        
+        if(isset($GET['edit'])){
+            
+            $dato = $datosJson[$_GET['edit']];
+            
+        }
+    
+?>
 
-        <table border=1>
-            <tr>
-                <td>ID</td>
-				<td>Producto</td>
-				<td>Nombre</td>
-                <td>Comentario</td>
-                <td>Acciones</td>
-            </tr>
-            <?php
-                $datos = file_get_contents('./comentarios.json');
-                $datosJson = json_decode($datos,true);
-                //var_dump($datosJson);
-                foreach($datosJson as $cat){ ?>
-                    <tr>
-					    <td><?php echo $cat['id']?></td>
-						<td><?php echo $cat['producto']?></td>
-						<td><?php echo $cat['email']?></td>
-                        <td><?php echo $cat['comentario']?></td>
-                        <td><a href="comentarios_add.php?edit=<?php echo $cat['id']?>">[Aprobar]</a> - 
-                            <a href="comentarios.php?del=<?php echo $cat['id']?>">[DEL]</td>
-                    </tr>
-                <?php } ?>
-        </table>
-        
-           </div>
-</div>
-</div>
+
+<form action="" method="post">
+    ID:<input type="text" name="nombre" value="<?php echo isset($dato)?$dato['id']:''?>"><br />
+	Nombre:<input type="text" name="nombre" value="<?php echo isset($dato)?$dato['nombre']:''?>"><br />
+	Imagen:<input type="imagen" name="nombre" value="<?php echo isset($dato)?$dato['imagen']:''?>"><br />
+	Precio:<input type="text" name="nombre" value="<?php echo isset($dato)?$dato['precio']:''?>"><br />
+	Detalle:<input type="text" name="nombre" value="<?php echo isset($dato)?$dato['detalle']:''?>"><br />
+    <input type="submit" name="add">
+</form>
+
     </body>

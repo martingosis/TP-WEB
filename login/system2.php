@@ -149,6 +149,7 @@
                 <ul>
                     <li><a href="system.php">Categorias</a></li>
                     <li><a href="system2.php">Marca</a></li>
+					<li><a href="producto.php">Productos</a></li>
                     <li><a href="comentarios.php">Comentarios</a></li>      
                 </ul>    
             </div>

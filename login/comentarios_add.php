@@ -13,7 +13,10 @@
     
     }
 
+
+  
 ?>
+
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -109,9 +112,9 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto text-center mr-xl-5">
-						<li class="<?php echo($seccion=="Logout")?"nav-item active mr-lg-2 mb-lg-0 mb-2":""?>">
-                        <a class="nav-link" href="system.php?logout">Logout</a>
-                    </li>
+						<li class="<?php echo($seccion=="Index")?"nav-item active mr-lg-2 mb-lg-0 mb-2":""?>">
+							<a class="nav-link" href="../index.php">Logout</a>
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -120,75 +123,41 @@
 	
 
 
-	<?php
-        include_once('func.php');
+<?php
 
-        if(isset($_GET['del'])){
-            //obtengo el contenido del archivo
-            $datos = file_get_contents('./comentarios.json');
-            //convierto a un array
-            $datosJson = json_decode($datos,true);
-            //var_dump($datosJson);
-            //borro del array
-            unset($datosJson[$_GET['del']]);
-            //trunco el archivo
-            $fp = fopen('./comentarios.json','w');
-            //convierto a json string
-            $datosString = json_encode($datosJson);
-            //guardo el archivo
-            fwrite($fp,$datosString);
-            fclose($fp);
-            redirect('comentarios.php');
-        }
-        ?>
-        
-        
-        <div class="container">
-        <div class="row">
-        <div class="col-4">
 
-                       
-            <ul>
-                <li><a href="system.php">Categorias</a></li>
-                <li><a href="system2.php">Marca</a></li>
-                <li><a href="producto.php">Productos</a></li>
-                <li><a href="comentarios.php">Comentarios</a></li>      
-            </ul>    
-        </div>
-        
-        <div class="col-8">
+    include_once('func.php');
+                            
+                            
+    $datos = file_get_contents('./comentarios.json');
+    $datosJson = json_decode($datos,true);
             
-        
+                
+                
+                 
+                $datosJson[$id] = array('id'=>date('ymdhis'),'producto'=>$_GET['id'], 'email'=>$_POST['email'], 'comentario'=>$_POST['comentario'],'aprobado'=>"false");    
+                
+                //trunco el archivo
+                
+                $fp = fopen('./comentarios.json', 'w');
+                //convierto a json string
+                $datosString = json_encode($datosJson);
+                //guardo el archivo
+                fwrite($fp,$datosString);
+                fclose($fp);
+               redirect('comentarios.php');
+            
 
-        <h2>Comentarios </h2>
 
-        
+        if(isset($GET['edit'])){
+            
+            $dato = $datosJson[$_GET['edit']];
+            
+        }
+		echo "<pre>";
+		print_r($datosJson);
+	  echo "</pre>";
+?>
 
-        <table border=1>
-            <tr>
-                <td>ID</td>
-				<td>Producto</td>
-				<td>Nombre</td>
-                <td>Comentario</td>
-                <td>Acciones</td>
-            </tr>
-            <?php
-                $datos = file_get_contents('./comentarios.json');
-                $datosJson = json_decode($datos,true);
-                //var_dump($datosJson);
-                foreach($datosJson as $cat){ ?>
-                    <tr>
-					    <td><?php echo $cat['id']?></td>
-						<td><?php echo $cat['producto']?></td>
-						<td><?php echo $cat['email']?></td>
-                        <td><?php echo $cat['comentario']?></td>
-                        <td><a href="comentarios_add.php?edit=<?php echo $cat['id']?>">[Aprobar]</a> - 
-                            <a href="comentarios.php?del=<?php echo $cat['id']?>">[DEL]</td>
-                    </tr>
-                <?php } ?>
-        </table>
-        
-           </div>
-</div>
-</div>
+
     </body>
