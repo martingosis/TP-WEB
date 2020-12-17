@@ -8,21 +8,20 @@
         require_once 'swift-mailer/info.php';
             
     // Create the Transport
-   $transport = (new Swift_SmtpTransport('smtp.mail.yahoo.com', 25))
-  ->setUsername('EMAIL')
-  ->setPassword('PASS')
-    ;
+   $transport = (new Swift_SmtpTransport('smtp.google.com', 587, 'tls'))
+  ->setUsername(EMAIL)
+  ->setPassword(PASS);
 
     // Create the Mailer using your created Transport
    $mailer = new Swift_Mailer($transport);
 
     // Create a message
    $message = (new Swift_Message('Form Submission'))
-  ->setFrom([EMAIL => 'martin'])
-  ->setTo($_POST['email'])
+  ->setFrom([$_POST['email']=>'hola'])
+  ->setTo('martin.esteban.gosis@gmail.com')
   ->setBody($_POST['message']);
 
-    // Send the message
+   // Send the message
    $result = $mailer->send($message);
         
         if(!$result){
