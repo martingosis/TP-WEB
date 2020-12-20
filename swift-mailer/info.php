@@ -1,6 +1,6 @@
 <?php
 
-define('EMAIL', 'martin.esteban.gosis@gmail.com');
+define('EMAIL', '');
 define('PASS', '');
 
 ?>
