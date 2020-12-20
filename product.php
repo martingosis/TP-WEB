@@ -46,20 +46,20 @@
                                                     $imprimir = false;
                                                  
                                             }
-                                        }
                                        
-                                         if(!empty($_GET['mar'])){
+                                       
+                                         if(!empty($_GET['mar'])&& $imprimir){
                                             
                                                 if($prod[ 'marcas'] != $_GET['mar']){
                                                     $imprimir = false;
-                                    
+												}
                                             }
 
 											
                                         }
                                     
                                         
-                                }
+                               
                                         
                                         
                                  if($imprimir){   
@@ -100,7 +100,7 @@
 				            
 				                <?php 
                                 
-                                 
+							}
                                         }
                                     }
                                     

@@ -24,7 +24,8 @@
 		                        
 		                        
                               <?php }  ?>
-                                
+							  <li><a href="./product.php?cat=&mar=<?php echo isset($_GET['mar'])?$_GET["mar"]:""?>"><span class="icon-chevron-right"></span> Todos</a></li>
+		                        
                                 </ul>  
 								
 							</div>
@@ -43,10 +44,12 @@
 		                              foreach($marcas as $mar){
                                 
                                 ?>   
-                                    <ul><a href="./product.php?mar=<?php echo $mar['id']?>"><span class="icon-chevron-right"></span> <?php echo $mar['nombre']?></a></ul>
+                <ul><a href="./product.php?mar=<?php echo $mar['id'].'&cat='.(isset($_GET['cat'])?$_GET["cat"]:"")?>"><span class="icon-chevron-right"></span> <?php echo $mar['nombre']?></a></ul>
 		                        
 		                        
                               <?php }  ?>
+							  <ul><a href="./product.php?mar=<?php echo '&cat='.(isset($_GET['cat'])?$_GET["cat"]:"")?>"><span class="icon-chevron-right"></span> Todos</a></ul>
+
                                   
 								
 							</div>

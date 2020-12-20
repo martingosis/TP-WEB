@@ -76,18 +76,26 @@
 								
                                    ?> 
 								       <?php }  ?>
+
+
 									   <br>
-                                            
                                             
                                             <span class="item_price">Opinion del producto</span>
                                             <br>
                                             <br>
-                                            
+											<?php $pata=$_GET['idprod']; ?>
+
+									   <form action="login/comentarios_add.php?id=<?php echo $pata; ?>" method="post">
+                                         
+								
+
+									    
+
 							                 <label class="col-form-label">E-mail</label>
 							                <input type="email" class="form-control" name="email" placeholder="Ingrese su email" required="">
 						                    
                                            <label class="col-form-label">Comentario</label>
-                                            <textarea name="Message" class="form-control" placeholder="" required=""> </textarea>
+                                            <textarea name="comentario" class="form-control" placeholder="" required=""> </textarea>
                                             <br>
                                             <label for="tentacles">Ranking:</label>
                                              <input type="number" id="tentacles" name="tentacles"
@@ -97,13 +105,13 @@
                                             <br>
                                             <br> 
 											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-												<form action="#" method="post">
+												
 													<fieldset>
 														<input type="submit" name="submit" value="Enviar" class="button btn" />
 													</fieldset>
-												</form>
+												
 											</div>		                        
-                             
+											</form>
 
                                             
                                           
